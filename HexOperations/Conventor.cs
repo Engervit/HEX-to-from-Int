@@ -44,7 +44,7 @@ namespace HexOperations
                 {
                     int value = _bitString[i][j] switch
                     { 'a' => 10, 'b' => 11, 'c' => 12, 'd' => 13, 'e' => 14, 'f' => 15, _ => (_bitString[i][j] - '0') };
-                    littleEndian += value * (BigInteger)Math.Pow(16, degree);
+                    littleEndian += value * BigInteger.Pow(16, degree);
                     degree++;
                 }
             }
@@ -66,7 +66,7 @@ namespace HexOperations
                 {
                     int q = _bitString[i][j] switch
                     { 'a' => 10, 'b' => 11, 'c' => 12, 'd' => 13, 'e' => 14, 'f' => 15, _ => (_bitString[i][j] - '0') };
-                    bigEndian += q * (BigInteger)Math.Pow(16, degree);
+                    bigEndian += q * BigInteger.Pow(16, degree);
                     degree++;
                 }
             }
@@ -103,9 +103,9 @@ namespace HexOperations
 
             BigInteger calculatedEndian = littleEndian;
             string hex = "";
-            string[] bitHex = new string[hexLenght/4];
+            string[] bitHex = new string[2 * hexLenght];
 
-            for (int i = (hexLenght / 4) - 1; i >= 0; i-=2)
+            for (int i = (2 * hexLenght) - 1; i >= 0; i -= 2)
             {
                 for (int k = 1, r = 0; k >= 0; k--, r++)
                 {
